@@ -354,4 +354,29 @@ BEGIN
     END IF;
 END$$
 
+CREATE TRIGGER trg_check_goal_failure
+AFTER INSERT ON Emission_Calculations
+FOR EACH ROW
+BEGIN
+    DECLARE total_co2 DECIMAL(10,4);
+    DECLARE uid INT;
+
+    SELECT user_id INTO uid
+    FROM Activities
+    WHERE activity_id = NEW.activity_id;
+
+    -- Update any active goals that have been exceeded
+    UPDATE Goals g
+    SET g.status = 'failed'
+    WHERE g.user_id = uid 
+      AND g.status = 'active'
+      AND g.target_co2_kg < (
+          SELECT COALESCE(SUM(ec.co2_result), 0)
+          FROM Emission_Calculations ec
+          JOIN Activities a ON ec.activity_id = a.activity_id
+          WHERE a.user_id = uid
+            AND a.activity_date BETWEEN g.start_date AND g.end_date
+      );
+END$$
+
 DELIMITER ;

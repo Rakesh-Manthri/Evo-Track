@@ -52,8 +52,9 @@ public class MainLayout {
         Button offsetsBtn = createNavButton("Carbon Offsets", () -> new OffsetsView().getView());
         Button rewardsBtn = createNavButton("Achievements", () -> new RewardsView().getView());
         Button analyticsBtn = createNavButton("Analytics Map", () -> new AnalyticsView().getView());
+        Button reportsBtn = createNavButton("Saved Reports", () -> new ReportsView().getView());
         
-        sidebar.getChildren().addAll(dashboardBtn, logActivityBtn, historyBtn, goalsBtn, offsetsBtn, rewardsBtn, analyticsBtn);
+        sidebar.getChildren().addAll(dashboardBtn, logActivityBtn, historyBtn, goalsBtn, offsetsBtn, rewardsBtn, analyticsBtn, reportsBtn);
 
         // Render specific UI for office users
         if ("office".equals(SessionManager.getAccountType())) {
