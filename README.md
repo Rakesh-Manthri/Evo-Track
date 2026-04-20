@@ -1,4 +1,4 @@
-# 🌿 EcoCampus — Carbon Footprint & Sustainability Tracker
+# 🌿 Eco-Track — Carbon Footprint & Sustainability Tracker
 
 A robust JavaFX desktop application that helps students and campus organizations track, analyze, and reduce their carbon footprint. Originally featuring simple data persistence, the application now sports a gorgeous glassmorphism UI entirely driven by an intricate 13-table SQL database incorporating Views and Triggers for automatic gamification and statistical tracking!
 
