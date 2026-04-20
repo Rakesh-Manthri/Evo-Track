@@ -1,0 +1,17 @@
+# Compiled class files
+*.class
+src/**/*.class
+
+# Log files
+*.log
+
+# Java/JavaFX binaries and external libraries
+*.jar
+*.dll
+lib/
+
+# IDE configurations
+.vscode/
+
+# Ignore Mac OS hidden files
+.DS_Store

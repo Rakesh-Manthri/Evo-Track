@@ -2,12 +2,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.ResultSet;
 
 public class DatabaseUtil {
 
     private static final String URL = "jdbc:mysql://localhost:3306/carbon_tracker";
     private static final String USER = "root";
-    private static final String PASSWORD = "Ash@13092005";
+    private static final String PASSWORD = "rakes75045";
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -15,82 +16,44 @@ public class DatabaseUtil {
     }
 
     public static void initializeDatabase() {
-        try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement()) {
-
-            System.out.println("✅ Connected to database. Initializing tables...");
-
-            // Create users table
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS users (" +
-                    "id INT AUTO_INCREMENT PRIMARY KEY," +
-                    "username VARCHAR(50) NOT NULL UNIQUE," +
-                    "password_hash VARCHAR(255) NOT NULL," +
-                    "role VARCHAR(20) DEFAULT 'user'," +
-                    "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
-                    ")");
-
-            // Create activity_logs table
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS activity_logs (" +
-                    "id INT AUTO_INCREMENT PRIMARY KEY," +
-                    "user_id INT NOT NULL," +
-                    "activity_category VARCHAR(50) NOT NULL," +
-                    "activity_type VARCHAR(50) NOT NULL," +
-                    "value DOUBLE NOT NULL," +
-                    "date DATE NOT NULL," +
-                    "FOREIGN KEY (user_id) REFERENCES users(id)" +
-                    ")");
-
-            // Create emission_factors table
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS emission_factors (" +
-                    "id INT AUTO_INCREMENT PRIMARY KEY," +
-                    "activity_type VARCHAR(50) NOT NULL UNIQUE," +
-                    "co2_per_unit DOUBLE NOT NULL" +
-                    ")");
-
-            // Insert default emission factors (e.g. per km/kWh)
-            stmt.executeUpdate("INSERT IGNORE INTO emission_factors (activity_type, co2_per_unit) VALUES " +
-                    "('car_gasoline', 0.192), " +
-                    "('bus', 0.089), " +
-                    "('electricity_kwh', 0.453), " +
-                    "('meat_meal', 2.0)"
-            );
-
-            // Create carbon_emissions table
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS carbon_emissions (" +
-                    "id INT AUTO_INCREMENT PRIMARY KEY," +
-                    "user_id INT NOT NULL," +
-                    "activity_log_id INT NOT NULL," +
-                    "calculated_co2 DOUBLE NOT NULL," +
-                    "date DATE NOT NULL," +
-                    "FOREIGN KEY (user_id) REFERENCES users(id)," +
-                    "FOREIGN KEY (activity_log_id) REFERENCES activity_logs(id)" +
-                    ")");
-
-            // Create carbon_offsets table
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS carbon_offsets (" +
-                    "id INT AUTO_INCREMENT PRIMARY KEY," +
-                    "user_id INT NOT NULL," +
-                    "offset_activity VARCHAR(100) NOT NULL," +
-                    "co2_reduced DOUBLE NOT NULL," +
-                    "date DATE NOT NULL," +
-                    "FOREIGN KEY (user_id) REFERENCES users(id)" +
-                    ")");
-
-            // Create goals_and_rewards table
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS goals_and_rewards (" +
-                    "id INT AUTO_INCREMENT PRIMARY KEY," +
-                    "user_id INT NOT NULL," +
-                    "goal_description VARCHAR(255) NOT NULL," +
-                    "target_co2 DOUBLE NOT NULL," +
-                    "achieved BOOLEAN DEFAULT FALSE," +
-                    "points_earned INT DEFAULT 0," +
-                    "FOREIGN KEY (user_id) REFERENCES users(id)" +
-                    ")");
-
-            System.out.println("✅ Database tables checked/created successfully!");
-
+        try (Connection conn = getConnection()) {
+            System.out.println("✅ Connected to database automatically. Schema is managed by setup_db.sql");
+            seedDefaultData(conn);
         } catch (SQLException | ClassNotFoundException e) {
-            System.err.println("❌ Error initializing database: " + e.getMessage());
+            System.err.println("❌ Error connecting to database: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private static void seedDefaultData(Connection conn) {
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM Activity_Categories");
+            if (rs.next() && rs.getInt(1) == 0) {
+                System.out.println("🌱 Seeding default lookup data...");
+                stmt.executeUpdate("INSERT INTO Activity_Categories (category_name) VALUES ('Transportation'), ('Energy'), ('Diet')");
+                
+                stmt.executeUpdate("INSERT INTO Emission_Factors (factor_name, co2_per_unit, unit) VALUES " +
+                                   "('Gasoline Car', 0.192, 'km'), " +
+                                   "('Bus', 0.089, 'km'), " +
+                                   "('Electricity', 0.453, 'kWh'), " +
+                                   "('Meat Meal', 2.0, 'meal')");
+
+                stmt.executeUpdate("INSERT INTO Activity_Types (category_id, name, default_unit, typical_emission_factor_id) VALUES " +
+                                   "(1, 'Driving (Car)', 'km', 1), " +
+                                   "(1, 'Taking the Bus', 'km', 2), " +
+                                   "(2, 'Home Electricity', 'kWh', 3), " +
+                                   "(3, 'Eating Meat', 'meal', 4)");
+            }
+            
+            rs = stmt.executeQuery("SELECT COUNT(*) FROM Rewards");
+            if (rs.next() && rs.getInt(1) == 0) {
+                System.out.println("🏅 Seeding default rewards data...");
+                stmt.executeUpdate("INSERT INTO Rewards (reward_name, description, condition_type, condition_value, badge_icon_url) VALUES " +
+                                   "('Eco Starter', 'Keep total emissions below 50kg for a month', 'below_threshold', 50.00, '⭐'), " +
+                                   "('Carbon Saver', 'Keep total emissions below 30kg for a month', 'below_threshold', 30.00, '🌟'), " +
+                                   "('Earth Champion', 'Keep total emissions below 10kg for a month', 'below_threshold', 10.00, '🏆')");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
