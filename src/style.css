@@ -1,0 +1,474 @@
+/* ============================================================
+   EVO-TRACK  |  Bioluminescent Forest Dark Theme
+   ============================================================ */
+
+/* ── ROOT / GLOBAL ── */
+.root {
+    -fx-font-family: 'Segoe UI', 'Arial', sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #0a0f0e;
+}
+
+.root-pane {
+    -fx-background-color:
+        radial-gradient(center 20% 30%, radius 60%, #0d2018 0%, transparent 70%),
+        radial-gradient(center 80% 70%, radius 50%, #071a24 0%, transparent 70%),
+        linear-gradient(to bottom right, #060d0b, #0a0f0e, #070c14);
+    -fx-font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+/* ── GLASS PANEL (Login/Register card) ── */
+.glass-pane {
+    -fx-background-color: rgba(15, 32, 24, 0.72);
+    -fx-background-radius: 24;
+    -fx-border-color: rgba(0, 255, 140, 0.18);
+    -fx-border-radius: 24;
+    -fx-border-width: 1.2;
+    -fx-padding: 40 36 40 36;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 255, 140, 0.12), 40, 0, 0, 8);
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+    -fx-background-color: rgba(8, 20, 15, 0.90);
+    -fx-border-color: rgba(0, 255, 140, 0.10);
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 30 16 30 16;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 24, 0, 6, 0);
+}
+
+.sidebar-logo-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00ffa3;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,255,163,0.8), 16, 0, 0, 0);
+    -fx-padding: 0 0 8 10;
+}
+
+.sidebar-logo-sub {
+    -fx-font-size: 11px;
+    -fx-text-fill: rgba(0,255,163,0.4);
+    -fx-padding: 0 0 20 10;
+}
+
+.sidebar-section-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(255,255,255,0.22);
+    -fx-padding: 14 0 4 12;
+}
+
+/* ── TYPOGRAPHY ── */
+.label-title {
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,255,163,0.6), 20, 0, 0, 0);
+}
+
+.label-brand {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00ffa3;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,255,163,0.9), 30, 0, 0, 0);
+}
+
+.label-header {
+    -fx-font-size: 20px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #e0ffe8;
+}
+
+.label-subheader {
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(200, 230, 210, 0.55);
+}
+
+.label-normal {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(210, 240, 220, 0.85);
+}
+
+.label-muted {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(180, 210, 190, 0.40);
+}
+
+/* ── TEXT FIELDS ── */
+.text-field-glass {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-border-color: rgba(0, 255, 140, 0.20);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 12 16 12 16;
+    -fx-font-size: 14px;
+    -fx-text-fill: #e0ffe8;
+    -fx-prompt-text-fill: rgba(160, 200, 175, 0.40);
+}
+
+.text-field-glass:focused {
+    -fx-border-color: #00ffa3;
+    -fx-background-color: rgba(0, 255, 163, 0.07);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 255, 163, 0.25), 12, 0, 0, 0);
+}
+
+/* ── COMBO BOX ── */
+.combo-box-glass {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-border-color: rgba(0, 255, 140, 0.20);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 14px;
+    -fx-text-fill: #e0ffe8;
+}
+
+.combo-box-glass .list-view {
+    -fx-background-color: #0d2018;
+    -fx-border-color: rgba(0,255,140,0.25);
+}
+
+.combo-box-glass .list-cell:hover {
+    -fx-background-color: rgba(0,255,140,0.12);
+}
+
+/* ── PRIMARY BUTTON (Glowing Pill) ── */
+.button-primary {
+    -fx-background-color: linear-gradient(to right, #00c97d, #00e5b0);
+    -fx-background-radius: 30;
+    -fx-text-fill: #061a10;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 13 28 13 28;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 210, 130, 0.55), 18, 0, 0, 6);
+}
+
+.button-primary:hover {
+    -fx-background-color: linear-gradient(to right, #00e090, #00ffc0);
+    -fx-translate-y: -2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 255, 163, 0.70), 24, 0, 0, 8);
+}
+
+.button-primary:pressed {
+    -fx-translate-y: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 200, 120, 0.40), 8, 0, 0, 2);
+}
+
+/* ── SECONDARY BUTTON (Ghost) ── */
+.button-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0, 255, 140, 0.40);
+    -fx-border-radius: 30;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #00ffa3;
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-padding: 11 26 11 26;
+    -fx-cursor: hand;
+}
+
+.button-secondary:hover {
+    -fx-background-color: rgba(0, 255, 163, 0.10);
+    -fx-border-color: #00ffa3;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,255,163,0.30), 12, 0, 0, 0);
+}
+
+.button-secondary:pressed {
+    -fx-background-color: rgba(0, 255, 163, 0.18);
+}
+
+/* ── SIDEBAR NAVIGATION BUTTONS ── */
+.button-sidebar {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(180, 220, 200, 0.65);
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-alignment: center-left;
+    -fx-padding: 11 16 11 16;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 12;
+}
+
+.button-sidebar:hover {
+    -fx-background-color: rgba(0, 255, 163, 0.08);
+    -fx-text-fill: #b0ffd8;
+}
+
+.button-sidebar.active {
+    -fx-background-color: rgba(0, 255, 163, 0.14);
+    -fx-text-fill: #00ffa3;
+    -fx-font-weight: bold;
+    -fx-border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #00ffa3;
+    -fx-border-width: 0 0 0 3;
+    -fx-border-radius: 0 12 12 0;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,255,163,0.35), 10, 0, 0, 0);
+}
+
+/* ── HEADER BAR ── */
+.header-bar {
+    -fx-background-color: rgba(6, 14, 10, 0.92);
+    -fx-border-color: rgba(0, 255, 140, 0.09);
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 14 28 14 28;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 12, 0, 0, 4);
+}
+
+/* ── STAT CARDS (Dashboard) ── */
+.card {
+    -fx-background-color: rgba(12, 28, 20, 0.80);
+    -fx-background-radius: 18;
+    -fx-border-color: rgba(0, 255, 140, 0.14);
+    -fx-border-radius: 18;
+    -fx-border-width: 1;
+    -fx-padding: 28 22 22 22;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,255,140,0.08), 20, 0, 0, 6);
+}
+
+.card-accent-1 {
+    -fx-border-color: rgba(0, 255, 140, 0.35);
+}
+
+.card-accent-2 {
+    -fx-border-color: rgba(0, 180, 255, 0.30);
+}
+
+.card-accent-3 {
+    -fx-border-color: rgba(255, 180, 0, 0.28);
+}
+
+.card-accent-4 {
+    -fx-border-color: rgba(220, 80, 255, 0.28);
+}
+
+.stat-value {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00ffa3;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,255,163,0.70), 16, 0, 0, 0);
+}
+
+.stat-value-blue {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00cfff;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,200,255,0.60), 16, 0, 0, 0);
+}
+
+.stat-value-amber {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffcf40;
+    -fx-effect: dropshadow(one-pass-box, rgba(255,200,0,0.55), 16, 0, 0, 0);
+}
+
+.stat-value-purple {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #d060ff;
+    -fx-effect: dropshadow(one-pass-box, rgba(200,80,255,0.55), 16, 0, 0, 0);
+}
+
+.stat-icon {
+    -fx-font-size: 28px;
+}
+
+/* ── ACTIVITY ROW CARDS ── */
+.activity-row {
+    -fx-background-color: rgba(255,255,255,0.03);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255, 255, 255, 0.06);
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-padding: 12 18 12 18;
+}
+
+.activity-row:hover {
+    -fx-background-color: rgba(0, 255, 163, 0.06);
+    -fx-border-color: rgba(0, 255, 163, 0.15);
+}
+
+/* ── SCROLL PANE ── */
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track,
+.scroll-bar:horizontal .track {
+    -fx-background-color: rgba(255,255,255,0.04);
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: rgba(0,255,163,0.22);
+    -fx-background-radius: 4;
+}
+
+/* ── CHART OVERRIDES ── */
+.chart-plot-background {
+    -fx-background-color: rgba(255,255,255,0.02);
+}
+
+.chart-content {
+    -fx-padding: 10;
+}
+
+.chart-title {
+    -fx-text-fill: #b0ffd8;
+    -fx-font-size: 14px;
+}
+
+.axis-label {
+    -fx-text-fill: rgba(180,220,200,0.60);
+}
+
+.axis {
+    -fx-tick-label-fill: rgba(180,220,200,0.60);
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-text-fill: #b0ffd8;
+}
+
+.default-color0.chart-bar { -fx-bar-fill: #00ffa3; }
+.default-color1.chart-bar { -fx-bar-fill: #00cfff; }
+.default-color2.chart-bar { -fx-bar-fill: #d060ff; }
+.default-color3.chart-bar { -fx-bar-fill: #ffcf40; }
+
+.default-color0.chart-pie { -fx-pie-color: #00ffa3; }
+.default-color1.chart-pie { -fx-pie-color: #00cfff; }
+.default-color2.chart-pie { -fx-pie-color: #ffcf40; }
+.default-color3.chart-pie { -fx-pie-color: #d060ff; }
+
+/* ── TABLE VIEW ── */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,255,140,0.12);
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.table-view .column-header {
+    -fx-background-color: rgba(0,255,163,0.10);
+    -fx-text-fill: #00ffa3;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: rgba(200,235,215,0.85);
+    -fx-border-color: rgba(255,255,255,0.04);
+}
+
+.table-row-cell:even {
+    -fx-background-color: rgba(255,255,255,0.02);
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgba(0,255,163,0.03);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(0,255,163,0.15);
+}
+
+/* ── SEPARATOR ── */
+.separator .line {
+    -fx-border-color: rgba(0,255,163,0.12);
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ── TOOLTIP ── */
+.tooltip {
+    -fx-background-color: #0d2018;
+    -fx-text-fill: #00ffa3;
+    -fx-border-color: rgba(0,255,140,0.30);
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+}
+
+/* ── DATE PICKER ── */
+.date-picker {
+    -fx-background-color: rgba(255,255,255,0.05);
+    -fx-border-color: rgba(0,255,140,0.20);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+/* ── BADGES / TAGS ── */
+.badge-green {
+    -fx-background-color: rgba(0,255,163,0.15);
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(0,255,163,0.35);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-padding: 3 12 3 12;
+    -fx-text-fill: #00ffa3;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.badge-amber {
+    -fx-background-color: rgba(255,207,64,0.12);
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(255,207,64,0.35);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-padding: 3 12 3 12;
+    -fx-text-fill: #ffcf40;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.badge-blue {
+    -fx-background-color: rgba(0,207,255,0.12);
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(0,207,255,0.35);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-padding: 3 12 3 12;
+    -fx-text-fill: #00cfff;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* ── ERROR LABEL ── */
+.error-label {
+    -fx-text-fill: #ff6b6b;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 0 0 0;
+}
+
+/* ── SUCCESS LABEL ── */
+.success-label {
+    -fx-text-fill: #00ffa3;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-bar > .track {
+    -fx-background-color: rgba(255,255,255,0.08);
+    -fx-background-radius: 6;
+}
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(to right, #00c97d, #00e5b0);
+    -fx-background-radius: 6;
+    -fx-background-insets: 0;
+}
+
+/* ── GLOW DIVIDER ── */
+.glow-divider {
+    -fx-fill: rgba(0,255,163,0.25);
+    -fx-height: 1;
+}
